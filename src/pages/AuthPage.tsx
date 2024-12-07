@@ -1,38 +1,47 @@
 import React from "react";
-import { Grid2 } from "@mui/material";
+import Grid from "@mui/material/Grid"; // Material-UI Grid
 import styled from "styled-components";
 import LogoComp from "../components/login/LogoComp";
 import AuthForm from "../components/login/AuthForm";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 // Block: page-container
-const PageContainer = styled(Grid2)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const PageContainer = styled(Grid)`
   width: 100%;
-  max-width: 100vw; /* Tam genişlik */
-  aspect-ratio: 16 / 9; /* 16:9 oranı */
+  height: 100vh; /* Tüm ekran yüksekliği */
+  padding: 16px;
 `;
 
-// Block: login-section
-const LoginSection = styled(Grid2)`
-  flex: 1;
-  padding: 16px;
+// Styled Grid Item
+const LoginSection = styled(Grid).attrs(() => ({
+  item: true,
+  xs: 12, // Mobil ekranlarda tam genişlik
+  sm: 6, // Tablet ekranlarda %50 genişlik
+}))`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 16px;
+
+  @media (max-width: 768px) {
+    padding: 8px;
+  }
 `;
 
 const AuthPage: React.FC = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <PageContainer container>
-      <LoginSection>
-        <LogoComp />
-      </LoginSection>
+      {isMobile && (
+        <LoginSection>
+          <LogoComp />
+        </LoginSection>
+      )}
 
       <LoginSection>
-        <AuthForm type="login" />
+        <AuthForm />
       </LoginSection>
     </PageContainer>
   );

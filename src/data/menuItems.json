@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Dashboard",
-    "path": "/",
+    "path": "/dashboard",
     "icon": "/icons/dashboard.svg"
   },
   {
@@ -35,5 +35,11 @@
     "name": "Settings",
     "path": "/settings",
     "icon": "/icons/settings.svg"
+  },
+  {
+    "id": 7,
+    "name": "Log out",
+    "icon": "/icons/logout.svg",
+    "path": "//"
   }
 ]

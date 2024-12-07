@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-interface AuthFormProps {
-  type: "login" | "signup";
-}
-
-const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
+const AuthForm: React.FC = () => {
+  const [type, setType] = useState<"login" | "signup">("signup"); // Default signup
   const isLogin = type === "login";
   const heading = isLogin ? "Log in to your account" : "Create an account";
   const subText = isLogin
@@ -16,18 +14,45 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
     ? "Don't have an account?"
     : "Already have an account?";
   const altLinkText = isLogin ? "Sign up" : "Log in";
-  const altLinkHref = isLogin ? "/signup" : "/login";
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      setError("Email and Password are required!");
+      return;
+    }
+
+    // Local Storage'a kaydet
+    localStorage.setItem("name", name);
+    localStorage.setItem("userEmail", email);
+    localStorage.setItem("userPassword", password);
+
+    // Dashboard sayfasına yönlendir
+    navigate("/dashboard");
+  };
 
   return (
     <FormContainer>
       <Logo src="../../icons/logo.svg" alt="Logo" />
       <HeaderText>{heading}</HeaderText>
       <SubText>{subText}</SubText>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         {!isLogin && (
           <>
             <Label htmlFor="name">Name</Label>
-            <Input id="name" placeholder="Enter your name" required />
+            <Input
+              id="name"
+              placeholder="Enter your name"
+              required
+              autoComplete="off"
+              onChange={(e) => setName(e.target.value)}
+            />
           </>
         )}
         <Label htmlFor="email">Email</Label>
@@ -35,14 +60,18 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
           id="email"
           placeholder="Enter your email"
           type="email"
-          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          autoComplete="off"
         />
         <Label htmlFor="password">Password</Label>
         <Input
           id="password"
           placeholder={isLogin ? "Password" : "Create a password"}
           type="password"
-          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          autoComplete="off"
         />
         {!isLogin && <HelperText>Must be at least 8 characters.</HelperText>}
         <Button>{buttonText}</Button>
@@ -69,7 +98,16 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
         Sign {isLogin ? "in" : "up"} with Google
       </GoogleButton>
       <AltText>
-        {altText} <AltLink href={altLinkHref}>{altLinkText}</AltLink>
+        {altText}{" "}
+        <AltLink
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            setType(isLogin ? "signup" : "login"); // Type değiştir
+          }}
+        >
+          {altLinkText}
+        </AltLink>
       </AltText>
     </FormContainer>
   );
@@ -138,11 +176,13 @@ const Button = styled.button`
   cursor: pointer;
   margin-bottom: 10px;
 `;
+
 const OptionsContainer = styled.div`
   width: 100%; /* Geniş bir alan */
   margin-top: 20px;
   margin-bottom: 5px;
 `;
+
 const Options = styled.div`
   display: flex;
   justify-content: space-between;
