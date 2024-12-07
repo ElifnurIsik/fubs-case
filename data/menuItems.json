@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "name": "Dashboard",
+    "path": "/",
+    "icon": "/icons/dashboard.svg"
+  },
+  {
+    "id": 2,
+    "name": "Inventory",
+    "path": "/inventory",
+    "icon": "/icons/inventory.svg"
+  },
+  {
+    "id": 3,
+    "name": "Reports",
+    "path": "/reports",
+    "icon": "/icons/reports.svg"
+  },
+  {
+    "id": 4,
+    "name": "Suppliers",
+    "path": "/suppliers",
+    "icon": "/icons/suppliers.svg"
+  },
+  { "id": 5, "name": "Orders", "path": "/orders", "icon": "/icons/orders.svg" },
+  {
+    "id": 6,
+    "name": "Manage Store",
+    "path": "/manage-store",
+    "icon": "/icons/manage-store.svg"
+  },
+  {
+    "id": 7,
+    "name": "Settings",
+    "path": "/settings",
+    "icon": "/icons/settings.svg"
+  }
+]
