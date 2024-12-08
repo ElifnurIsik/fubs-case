@@ -99,7 +99,10 @@ const Layout: React.FC = () => {
                     style={{ width: 24, height: 24 }}
                   />
                 </ListItemIcon>
-                <ListItemText primary={item.name} />
+                <ListItemText
+                  sx={{ color: "#5D6679", fontSize: "16px" }}
+                  primary={item.name}
+                />
               </ListItemButton>
             </ListItem>
           ))}
@@ -112,7 +115,9 @@ const Layout: React.FC = () => {
           {bottomItems.map((item) => (
             <ListItem key={item.id} disablePadding>
               <ListItemButton
-                onClick={() => handleLogout()}
+                onClick={() =>
+                  item.name === "Log out" ? handleLogout() : navigate(item.path)
+                }
                 sx={{
                   color: "inherit",
                 }}
@@ -124,7 +129,10 @@ const Layout: React.FC = () => {
                     style={{ width: 24, height: 24 }}
                   />
                 </ListItemIcon>
-                <ListItemText primary={item.name} />
+                <ListItemText
+                  sx={{ color: "#5D6679", fontSize: "16px" }}
+                  primary={item.name}
+                />
               </ListItemButton>
             </ListItem>
           ))}
@@ -189,7 +197,7 @@ const Layout: React.FC = () => {
             <Avatar
               onClick={handleMenuOpen}
               sx={{ cursor: "pointer" }}
-              src="/icons/Avatar.svg"
+              src="../../icons/Avatar.svg"
               alt="User Avatar"
             />
             <Menu
