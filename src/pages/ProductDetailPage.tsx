@@ -33,7 +33,7 @@ export default ProductDetailPage;
 /** Styled Components */
 const ProductDetailPage__Container = styled.div`
   padding: 16px;
-  background-color: #f8f9fb;
+  background-color: #ffffff;
   min-height: 90vh;
   border-radius: 8px;
 

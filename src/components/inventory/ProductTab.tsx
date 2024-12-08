@@ -70,6 +70,7 @@ export default ProductTab;
 /** Styled Components */
 const ProductTabContainer = styled.div`
   width: 100%;
+  color: #ffffff;
 `;
 
 const ProductTab__Header = styled.div`
