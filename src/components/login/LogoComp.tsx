@@ -16,7 +16,7 @@ const HeaderText = styled.h1`
 const LogoComp: React.FC = () => {
   return (
     <div>
-      <Logo src="../../icons/logoB.svg" alt="Logo" />
+      <Logo src="../icons/logoB.svg" alt="Logo" />
       <HeaderText>KANBAN</HeaderText>
     </div>
   );
