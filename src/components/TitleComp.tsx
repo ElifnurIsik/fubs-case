@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 interface ButtonProps {
   text: string; // Buton metni
-  onClick: () => void; // Tıklama işlevi
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void; // Tıklama işlevi
   variant?: "text" | "outlined" | "contained"; // Opsiyonel buton tipi
   icon?: string; // Opsiyonel ikon
 }

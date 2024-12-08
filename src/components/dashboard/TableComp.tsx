@@ -32,10 +32,12 @@ const TableComp: React.FC = () => {
       <TableComp__TableContainer>
         <table className="table-comp__table">
           <thead>
-            <th className="table-comp__header-cell">Name</th>
-            <th className="table-comp__header-cell">Sold Quantity</th>
-            <th className="table-comp__header-cell">Remaining Quantity</th>
-            <th className="table-comp__header-cell">Price</th>
+            <tr>
+              <th className="table-comp__header-cell">Name</th>
+              <th className="table-comp__header-cell">Sold Quantity</th>
+              <th className="table-comp__header-cell">Remaining Quantity</th>
+              <th className="table-comp__header-cell">Price</th>
+            </tr>
           </thead>
           <tbody>
             {rows.map((row, index) => (
@@ -61,14 +63,20 @@ const TableComp__Container = styled.div`
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 100%; /* Tam yüksekliği kapla */
+  display: flex; /* Flex düzen */
+  flex-direction: column; /* İçerikler dikey hizalansın */
 `;
 
 const TableComp__TableContainer = styled.div`
   margin-top: 16px;
+  flex: 1; /* Kalan alanı doldur */
+  height: 100%; /* Kapsayıcı yükseklik */
+  overflow-y: auto; /* Uzun tablo durumunda kaydırma */
 
   .table-comp__table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse; /* Kenar boşluklarını kaldır */
   }
 
   .table-comp__header-cell {
@@ -76,11 +84,13 @@ const TableComp__TableContainer = styled.div`
     color: #5d6679;
     text-align: left;
     padding: 12px 8px;
+    background-color: #f3f4f6; /* Başlık hücre arka plan rengi */
+    font-weight: bold;
   }
 
   .table-comp__body-row {
     &:hover {
-      background-color: #f9f9f9;
+      background-color: #f9f9f9; /* Satır üzerine gelindiğinde arka plan */
     }
   }
 
@@ -89,6 +99,6 @@ const TableComp__TableContainer = styled.div`
     color: #5d6679;
     text-align: left;
     padding: 12px 8px;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid #e5e7eb; /* Satırlar arasında çizgi */
   }
 `;

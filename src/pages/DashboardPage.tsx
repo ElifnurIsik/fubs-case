@@ -80,7 +80,7 @@ const DashboardPage = () => {
   return (
     <>
       <Box>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} alignItems="stretch">
           <Grid item sm={8} xs={12}>
             <CardOne array={array} titles="Sales Overview" />
           </Grid>
@@ -102,22 +102,25 @@ const DashboardPage = () => {
         </Grid>
       </Box>
       <Box sx={{ mt: "1.5%" }}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{ height: "100%", width: "100%" }}>
           <Grid item sm={8} xs={12}>
             <ChartSales />
           </Grid>
-
           <Grid item sm={4} xs={12}>
             <ChartOrder />
           </Grid>
         </Grid>
       </Box>
       <Box sx={{ mt: "1.5%" }}>
-        <Grid container spacing={2}>
+        <Grid
+          container
+          spacing={2}
+          alignItems="stretch"
+          sx={{ height: "100%", width: "100%" }}
+        >
           <Grid item sm={8} xs={12}>
             <TableComp />
           </Grid>
-
           <Grid item sm={4} xs={12}>
             <ListComp />
           </Grid>

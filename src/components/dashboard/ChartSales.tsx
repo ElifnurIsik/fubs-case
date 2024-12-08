@@ -74,7 +74,8 @@ const ChartSales__Container = styled.div`
   padding: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow-x: auto;
-
+  flex: 1;
+  height: 100%;
   @media (max-width: 768px) {
     padding: 12px;
   }
