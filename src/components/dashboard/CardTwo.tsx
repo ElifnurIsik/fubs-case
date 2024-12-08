@@ -42,6 +42,8 @@ const CardTwo__Container = styled.div`
   background-color: #ffffff;
   border-radius: 8px;
   padding: 8px;
+  flex: 1;
+  height: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
@@ -80,6 +82,10 @@ const CardTwo__Value = styled.span`
 const CardTwo__Label = styled.span`
   font-size: 14px;
   color: #444444;
+  word-wrap: break-word; /* Uzun kelimeleri bölerek bir alt satıra geçmesini sağlar */
+  white-space: normal; /* Metnin normal şekilde sarılmasını sağlar */
+  overflow: hidden; /* Taşan içeriği gizler */
+  text-align: center;
 `;
 
 const CardTwo__Divider = styled.div`

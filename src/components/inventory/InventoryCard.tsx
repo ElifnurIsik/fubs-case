@@ -1,5 +1,14 @@
 import React from "react";
-import { Box, Grid, Typography, Divider, List, ListItem } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  Divider,
+  List,
+  ListItem,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import TitleComp from "../TitleComp";
 
 interface InventoryCardItem {
@@ -17,6 +26,8 @@ interface InventoryCardProps {
 }
 
 const InventoryCard: React.FC<InventoryCardProps> = ({ data, title }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <Box
       sx={{
@@ -34,7 +45,7 @@ const InventoryCard: React.FC<InventoryCardProps> = ({ data, title }) => {
       <Grid container spacing={2} alignItems="center">
         {data.map((item, index) => (
           <React.Fragment key={index}>
-            <Grid item xs={12} sm>
+            <Grid item xs={6} sm>
               <Box
                 sx={{
                   textAlign: "start",
@@ -99,7 +110,7 @@ const InventoryCard: React.FC<InventoryCardProps> = ({ data, title }) => {
             </Grid>
 
             {/* Divider */}
-            {index < data.length - 1 && (
+            {index < data.length - 1 && isMobile && (
               <Divider
                 orientation="vertical"
                 flexItem

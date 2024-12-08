@@ -33,6 +33,8 @@ const CardOne: React.FC<CardOneProps> = ({ array, titles }) => {
         borderRadius: 2,
         p: 1,
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        flex: 1,
+        height: "100%",
       }}
     >
       <TitleComp title={titles} />

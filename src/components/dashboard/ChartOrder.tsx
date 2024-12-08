@@ -81,6 +81,8 @@ const ChartOrder__Container = styled.div`
   background-color: #ffffff;
   border-radius: 8px;
   padding: 16px;
+  flex: 1;
+  height: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow-x: auto; /* Yatay kaydırma */
 `;

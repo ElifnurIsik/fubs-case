@@ -67,6 +67,8 @@ const ListComp__Container = styled.div`
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  height: 100%;
 `;
 
 const ListComp__List = styled.ul`
