@@ -34,9 +34,13 @@ const TableComp = () => {
       }}
     >
       <TitleComp
-        title="Top Selling Stock"
-        buttonText="See All"
-        onButtonClick={() => console.log("See All clicked!")}
+        title="Low Quantity Stock"
+        textButtons={[
+          {
+            text: "See All",
+            onClick: () => console.log("See All clicked!"),
+          },
+        ]}
       />
 
       <TableContainer>

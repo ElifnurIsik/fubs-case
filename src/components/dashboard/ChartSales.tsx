@@ -30,6 +30,7 @@ const ChartSales = () => {
     { month: "May", Purchase: 50000, Sales: 40000 },
     { month: "Jun", Purchase: 48000, Sales: 42000 },
   ];
+  const handleClilk = () => alert("Weekly!");
   return (
     <>
       <Box
@@ -44,8 +45,13 @@ const ChartSales = () => {
       >
         <TitleComp
           title="Sales & Purchase"
-          iconButton="Weekly"
-          onButtonClicks={() => console.log("See All clicked!")}
+          buttons={[
+            {
+              text: "Weekly",
+              onClick: handleClilk,
+              icon: "../../icons/Calendar.svg",
+            },
+          ]}
         />
 
         {/* Chart */}

@@ -1,21 +1,28 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
-import { width } from "@mui/system";
+import { Box, Typography, Button } from "@mui/material";
+
+interface ButtonProps {
+  text: string; // Buton metni
+  onClick: () => void; // Tıklama işlevi
+  variant?: "text" | "outlined" | "contained"; // Opsiyonel buton tipi
+  icon?: string; // Opsiyonel ikon
+}
+
+interface TextButtonProps {
+  text: string; // Sadece metin içeren buton
+  onClick: () => void; // Tıklama işlevi
+}
 
 interface TitleCompProps {
   title: string; // Başlık metni
-  buttonText?: string; // Opsiyonel buton metni
-  iconButton?: string;
-  onButtonClicks?: () => void;
-  onButtonClick?: () => void; // Opsiyonel tıklama işlevi
+  buttons?: ButtonProps[]; // Standart butonlar
+  textButtons?: TextButtonProps[]; // Sadece metin içeren butonlar
 }
 
 const TitleComp: React.FC<TitleCompProps> = ({
   title,
-  buttonText,
-  iconButton,
-  onButtonClick,
-  onButtonClicks,
+  buttons = [],
+  textButtons = [],
 }) => {
   return (
     <Box
@@ -23,7 +30,6 @@ const TitleComp: React.FC<TitleCompProps> = ({
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-
         p: 1,
       }}
     >
@@ -35,40 +41,55 @@ const TitleComp: React.FC<TitleCompProps> = ({
         {title}
       </Typography>
 
-      {/* Opsiyonel Buton */}
-      {buttonText && onButtonClick && (
-        <Typography
-          onClick={onButtonClick}
-          sx={{
-            cursor: "pointer",
-            color: "#0F50AA",
-            fontSize: "14px",
-            fontWeight: 500,
-          }}
-        >
-          {buttonText}
-        </Typography>
+      {/* Eğer textButtons varsa */}
+      {textButtons.length > 0 && (
+        <Box sx={{ display: "flex", gap: 2 }}>
+          {textButtons.map((textButton, index) => (
+            <Typography
+              key={index}
+              onClick={textButton.onClick}
+              sx={{
+                cursor: "pointer",
+                color: "#0F50AA",
+                fontSize: "14px",
+                fontWeight: 500,
+              }}
+            >
+              {textButton.text}
+            </Typography>
+          ))}
+        </Box>
       )}
-      {/* Opsiyonel Buton 2 */}
-      {iconButton && onButtonClicks && (
-        <Button
-          variant="outlined"
-          onClick={onButtonClick}
-          sx={{
-            color: "#5D6679",
-            borderColor: "#D0D3D9",
-            textTransform: "none",
-          }}
-          startIcon={
-            <img
-              src="../icons/Calendar.svg"
-              alt="Calendar Icon"
-              style={{ width: 20, height: 20 }}
-            />
-          }
-        >
-          {iconButton}
-        </Button>
+
+      {/* Eğer buttons varsa */}
+      {buttons.length > 0 && (
+        <Box sx={{ display: "flex", gap: 1 }}>
+          {buttons.map((button, index) => (
+            <Button
+              key={index}
+              variant={button.variant || "outlined"}
+              onClick={button.onClick}
+              sx={{
+                color: button.variant === "contained" ? "#FFFFFF" : "#5D6679",
+                backgroundColor:
+                  button.variant === "contained" ? "#0F50AA" : "transparent",
+                borderColor: "#D0D3D9",
+                textTransform: "none",
+              }}
+              startIcon={
+                button.icon && (
+                  <img
+                    src={button.icon}
+                    alt="Button Icon"
+                    style={{ width: 20, height: 20 }}
+                  />
+                )
+              }
+            >
+              {button.text}
+            </Button>
+          ))}
+        </Box>
       )}
     </Box>
   );

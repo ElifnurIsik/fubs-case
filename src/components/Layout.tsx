@@ -234,18 +234,16 @@ const Layout: React.FC = () => {
             />
           </Paper>
 
-          {/* Right Side Icons */}
           <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            {/* Notification Icon */}
             <img src="../icons/notification.svg" />
-            {/* User Avatar */}
+
             <Avatar
               src="../icons/Avatar.svg"
               alt="User"
               onClick={handleMenuOpen}
-              sx={{ width: 36, height: 36 }}
+              sx={{ width: 36, height: 36, cursor: "pointer" }}
             />
-            {/* Menü */}
+
             <Menu
               anchorEl={anchorEl}
               open={open}
@@ -257,7 +255,6 @@ const Layout: React.FC = () => {
                 },
               }}
             >
-              {/* localStorage'dan gelen bilgileri göster */}
               <MenuItem>
                 <Typography variant="body1" fontWeight="bold">
                   {nameStorage || emailStorage || "No User Info"}

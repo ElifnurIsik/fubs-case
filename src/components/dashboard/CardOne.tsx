@@ -77,8 +77,7 @@ const CardOne: React.FC<CardOneProps> = ({ array, titles }) => {
                 orientation="vertical"
                 flexItem
                 sx={{
-                  height: "50%", // Divider'ın yüksekliğini %50 yapar
-                  backgroundColor: "#e5e7eb", // Divider'ın rengini ayarlar
+                  backgroundColor: "#e5e7eb",
                 }}
               />
             )}

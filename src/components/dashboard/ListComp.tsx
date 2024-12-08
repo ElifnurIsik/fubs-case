@@ -36,9 +36,13 @@ const ListComp = () => {
         }}
       >
         <TitleComp
-          title="Low Quantity  Stock"
-          buttonText="See All"
-          onButtonClick={() => console.log("See All clicked!")}
+          title="Low Quantity Stock"
+          textButtons={[
+            {
+              text: "See All",
+              onClick: () => console.log("See All clicked!"),
+            },
+          ]}
         />
 
         <List
