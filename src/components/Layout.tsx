@@ -189,7 +189,7 @@ const Layout: React.FC = () => {
             <Avatar
               onClick={handleMenuOpen}
               sx={{ cursor: "pointer" }}
-              src="/icons/avatar.svg"
+              src="/icons/Avatar.svg"
               alt="User Avatar"
             />
             <Menu
