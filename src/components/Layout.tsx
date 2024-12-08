@@ -17,6 +17,7 @@ import {
   MenuItem,
   Paper,
   Toolbar,
+  Tooltip,
   Typography,
   useMediaQuery,
   useTheme,
@@ -208,33 +209,36 @@ const Layout: React.FC = () => {
               KANBAN
             </Typography>
           </IconButton>
-          {/* Search Bar */}
-          <Paper
-            component="form"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              width: "100%",
-              maxWidth: 400,
-              padding: "4px 8px",
-              borderRadius: "8px",
-              boxShadow: "none",
-              border: "1px solid #E0E0E0",
-            }}
-          >
-            <img src="../icons/search.svg" />
-            <InputBase
-              placeholder="Search product, supplier, order"
+          {isMobile && (
+            <Paper
+              component="form"
               sx={{
-                ml: 1,
-                flex: 1,
-                fontSize: "14px",
-                color: "#6B7280",
+                display: "flex",
+                alignItems: "center",
+                width: "100%",
+                maxWidth: 400,
+                padding: "4px 8px",
+                borderRadius: "8px",
+                boxShadow: "none",
+                border: "1px solid #E0E0E0",
               }}
-            />
-          </Paper>
+            >
+              <img src="../icons/search.svg" />
+              <InputBase
+                placeholder="Search product, supplier, order"
+                sx={{
+                  ml: 1,
+                  flex: 1,
+                  fontSize: "14px",
+                  color: "#6B7280",
+                }}
+              />
+            </Paper>
+          )}
 
           <Box sx={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            {!isMobile && <img src="../icons/search.svg" />}
+
             <img src="../icons/notification.svg" />
 
             <Avatar

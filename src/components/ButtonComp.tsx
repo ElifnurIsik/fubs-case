@@ -1,12 +1,11 @@
 import React from "react";
-import { Button } from "@mui/material";
+import styled from "styled-components";
 
 interface ButtonCompProps {
   onButtonClick: () => void; // Click handler function
   buttonText: string; // Button text
   variant?: "text" | "outlined" | "contained"; // Optional variant
   icon?: string; // Optional icon
-  sx?: object; // Optional additional styles
 }
 
 const ButtonComp: React.FC<ButtonCompProps> = ({
@@ -14,26 +13,56 @@ const ButtonComp: React.FC<ButtonCompProps> = ({
   buttonText,
   variant = "contained", // Default variant is contained
   icon,
-  sx = {}, // Default empty styles
 }) => {
   return (
-    <Button
-      variant={variant}
+    <ButtonComp__Button
       onClick={onButtonClick}
-      sx={{
-        color: variant === "contained" ? "#FFFFFF" : "#5D6679",
-        backgroundColor: variant === "contained" ? "#0F50AA" : "transparent",
-        borderColor: variant === "outlined" ? "#D0D3D9" : "none",
-        textTransform: "none",
-        ...sx, // Merge additional styles
-      }}
-      startIcon={
-        icon && <img src={icon} alt="Icon" style={{ width: 20, height: 20 }} />
-      }
+      isContained={variant === "contained"}
+      isOutlined={variant === "outlined"}
     >
+      {icon && <ButtonComp__Icon src={icon} alt="Button Icon" />}
       {buttonText}
-    </Button>
+    </ButtonComp__Button>
   );
 };
 
 export default ButtonComp;
+
+/** Styled Components */
+interface StyledButtonProps {
+  isContained: boolean;
+  isOutlined: boolean;
+}
+
+const ButtonComp__Button = styled.button<StyledButtonProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: ${(props) => (props.isContained ? "#FFFFFF" : "#5D6679")};
+  background-color: ${(props) =>
+    props.isContained ? "#0F50AA" : "transparent"};
+  border: ${(props) => (props.isOutlined ? "1px solid #D0D3D9" : "none")};
+  border-radius: 4px;
+  text-transform: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) =>
+      props.isContained ? "#0D3F85" : "rgba(0, 0, 0, 0.04)"};
+  }
+
+  &:disabled {
+    background-color: #e0e0e0;
+    color: #9e9e9e;
+    cursor: not-allowed;
+  }
+`;
+
+const ButtonComp__Icon = styled.img`
+  width: 20px;
+  height: 20px;
+`;

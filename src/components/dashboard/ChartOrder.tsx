@@ -1,6 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
-
+import styled from "styled-components";
 import TitleComp from "../TitleComp";
 import {
   LineChart,
@@ -11,7 +10,8 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-const ChartOrder = () => {
+
+const ChartOrder: React.FC = () => {
   const data = [
     { month: "Jan", Ordered: 2000, Delivered: 3000 },
     { month: "Feb", Ordered: 1500, Delivered: 4000 },
@@ -19,18 +19,11 @@ const ChartOrder = () => {
     { month: "Apr", Ordered: 2200, Delivered: 3800 },
     { month: "May", Ordered: 2700, Delivered: 4200 },
   ];
+
   return (
-    <>
-      <Box
-        sx={{
-          backgroundColor: "#FFFFFF",
-          borderRadius: 2,
-          p: 1,
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <TitleComp title="Order Summary" />
-        {/* Grafik */}
+    <ChartOrder__Container>
+      <TitleComp title="Order Summary" />
+      <ChartOrder__ChartWrapper>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart
             data={data}
@@ -65,45 +58,62 @@ const ChartOrder = () => {
             />
           </LineChart>
         </ResponsiveContainer>
-        {/* Legend */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            overflowY: "auto",
-            gap: 4,
-          }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Box
-              sx={{
-                width: 12,
-                height: 12,
-                backgroundColor: "#D0A26B",
-                borderRadius: "50%",
-              }}
-            />
-            <Typography sx={{ fontSize: 14, color: "#5D6679" }}>
-              Ordered
-            </Typography>
-          </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <Box
-              sx={{
-                width: 12,
-                height: 12,
-                backgroundColor: "#74B0FA",
-                borderRadius: "50%",
-              }}
-            />
-            <Typography sx={{ fontSize: 14, color: "#5D6679" }}>
-              Delivered
-            </Typography>
-          </Box>
-        </Box>
-      </Box>
-    </>
+      </ChartOrder__ChartWrapper>
+      <ChartOrder__Legend>
+        <ChartOrder__LegendItem>
+          <ChartOrder__LegendIcon color="#D0A26B" />
+          <ChartOrder__LegendText>Ordered</ChartOrder__LegendText>
+        </ChartOrder__LegendItem>
+        <ChartOrder__LegendItem>
+          <ChartOrder__LegendIcon color="#74B0FA" />
+          <ChartOrder__LegendText>Delivered</ChartOrder__LegendText>
+        </ChartOrder__LegendItem>
+      </ChartOrder__Legend>
+    </ChartOrder__Container>
   );
 };
 
 export default ChartOrder;
+
+/** Styled Components */
+
+const ChartOrder__Container = styled.div`
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Yatay kaydırma */
+`;
+
+const ChartOrder__ChartWrapper = styled.div`
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+`;
+
+const ChartOrder__Legend = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+  overflow-y: auto; /* Yatay kaydırma */
+`;
+
+const ChartOrder__LegendItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const ChartOrder__LegendIcon = styled.div<{ color: string }>`
+  width: 12px;
+  height: 12px;
+  background-color: ${(props) => props.color};
+  border-radius: 50%;
+`;
+
+const ChartOrder__LegendText = styled.span`
+  font-size: 14px;
+  color: #5d6679;
+`;

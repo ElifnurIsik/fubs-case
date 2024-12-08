@@ -1,19 +1,17 @@
 import React from "react";
+import styled from "styled-components";
 import {
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
-  Button,
+  Grid,
   Typography,
   TextField,
-  Box,
   List,
   ListItem,
-  Grid,
 } from "@mui/material";
 import ButtonComp from "../ButtonComp";
-import { Label } from "recharts";
 import TitleComp from "../TitleComp";
 
 interface AddProductModalProps {
@@ -23,151 +21,134 @@ interface AddProductModalProps {
 
 const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      fullWidth
-      maxWidth="sm"
-      sx={{
-        "& .MuiDialog-paper": {
-          maxWidth: "500px", // Maksimum genişlik
-          width: "90%", // Mobilde daha küçük genişlik
-          borderRadius: "8px", // Köşe yuvarlatma
-        },
-      }}
-    >
-      <DialogTitle sx={{ pb: 0 }}>
+    <StyledDialog open={open} onClose={onClose}>
+      <StyledDialogTitle>
         <TitleComp title="New Product" />
-      </DialogTitle>
-      <DialogContent sx={{ pb: 0 }}>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          {" "}
-          <List>
-            <ListItem sx={{ justifyContent: "center" }}>
-              {" "}
-              {/* Image Upload */}
-              <Box
-                sx={{
-                  border: "2px dashed #D0D3D9",
-                  padding: "16px",
-                  textAlign: "center",
-                  borderRadius: "8px",
-                  color: "#6B7280",
-                  width: "81px",
-                  height: "81px",
-                }}
-              />
-              <Box
-                sx={{
-                  textAlign: "center",
-                  color: "#6B7280", // Genel metin rengi
-                  lineHeight: "1.5",
-                  pl: 2,
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: 500,
-                    color: "#858D9D",
-                  }}
-                >
-                  Drag image here
-                </Typography>
-                <Typography
-                  sx={{
-                    fontSize: "14px",
-                    fontWeight: 500,
-                    color: "#858D9D",
-                  }}
-                >
-                  or
-                </Typography>
-                <Typography
-                  component="span"
-                  sx={{
-                    color: "#448DF2",
-                    cursor: "pointer",
-                    fontSize: "14px",
-                    fontWeight: 500,
-                  }}
-                >
-                  Browse image
-                </Typography>
-              </Box>
-            </ListItem>
-          </List>
-          {/* Product Details */}
-          <List sx={{ width: "100%" }}>
-            {[
-              { label: "Product Name", placeholder: "Enter product name" },
-              { label: "Product ID", placeholder: "Enter product ID" },
-              { label: "Category", placeholder: "Select product category" },
-              { label: "Buying Price", placeholder: "Enter buying price" },
-              { label: "Quantity", placeholder: "Enter product quantity" },
-              { label: "Unit", placeholder: "Enter product unit" },
-              { label: "Expiry Date", placeholder: "Enter expiry date" },
-              {
-                label: "Threshold Value",
-                placeholder: "Enter threshold value",
-              },
-            ].map((item, index) => (
-              <ListItem key={index} sx={{ p: 0, mb: 2 }}>
-                <Grid container spacing={2} alignItems="center">
-                  {/* Label Alanı */}
-                  <Grid item xs={4}>
-                    <Typography
-                      sx={{
-                        color: "#48505E",
-                        fontSize: "16px",
-                        fontWeight: "500px",
-                        textAlign: "left",
-                        pr: 2,
-                      }}
-                    >
-                      {item.label}
-                    </Typography>
-                  </Grid>
+      </StyledDialogTitle>
 
-                  {/* TextField Alanı */}
-                  <Grid item xs={8}>
-                    <TextField
-                      label={item.placeholder}
-                      fullWidth
-                      variant="outlined"
-                      size="small"
-                    />
-                  </Grid>
+      <StyledDialogContent>
+        {/* Image Upload Section */}
+        <ImageUploadWrapper>
+          <ImageUploadBox />
+          <UploadTextWrapper>
+            <UploadText>Drag image here</UploadText>
+            <UploadText>or</UploadText>
+            <BrowseLink>Browse image</BrowseLink>
+          </UploadTextWrapper>
+        </ImageUploadWrapper>
+
+        {/* Product Details Section */}
+        <List>
+          {[
+            { label: "Product Name", placeholder: "Enter product name" },
+            { label: "Product ID", placeholder: "Enter product ID" },
+            { label: "Category", placeholder: "Select product category" },
+            { label: "Buying Price", placeholder: "Enter buying price" },
+            { label: "Quantity", placeholder: "Enter product quantity" },
+            { label: "Unit", placeholder: "Enter product unit" },
+            { label: "Expiry Date", placeholder: "Enter expiry date" },
+            {
+              label: "Threshold Value",
+              placeholder: "Enter threshold value",
+            },
+          ].map((item, index) => (
+            <ListItem key={index} className="add-product-modal__list-item">
+              <Grid container spacing={2} alignItems="center">
+                <Grid item xs={4}>
+                  <InputLabel>{item.label}</InputLabel>
                 </Grid>
-              </ListItem>
-            ))}
-          </List>
-        </Box>
-      </DialogContent>
-      <DialogActions sx={{ px: 3, pb: 3 }}>
-        {/* Discard Button */}
+                <Grid item xs={8}>
+                  <TextField
+                    label={item.placeholder}
+                    fullWidth
+                    variant="outlined"
+                    size="small"
+                  />
+                </Grid>
+              </Grid>
+            </ListItem>
+          ))}
+        </List>
+      </StyledDialogContent>
+
+      <StyledDialogActions>
         <ButtonComp
           onButtonClick={onClose}
           buttonText="Discard"
           variant="outlined"
-          sx={{ color: "#6B7280", borderColor: "#D0D3D9" }}
         />
-
-        {/* Add Product Button */}
         <ButtonComp
           onButtonClick={() => console.log("Add Product Clicked!")}
           buttonText="Add Product"
           variant="contained"
-          sx={{ backgroundColor: "#0F50AA", color: "#FFFFFF" }}
         />
-      </DialogActions>
-    </Dialog>
+      </StyledDialogActions>
+    </StyledDialog>
   );
 };
 
 export default AddProductModal;
+
+// Styled Components
+const StyledDialog = styled(Dialog)`
+  & .MuiDialog-paper {
+    max-width: 500px;
+    width: 90%;
+    border-radius: 8px;
+  }
+`;
+
+const StyledDialogTitle = styled(DialogTitle)`
+  padding-bottom: 0;
+`;
+
+const StyledDialogContent = styled(DialogContent)`
+  padding-bottom: 0;
+  justify-content: center;
+`;
+
+const ImageUploadWrapper = styled(ListItem)`
+  display: flex;
+  justify-content: center !important; /* Varsayılan stili geçersiz kılar */
+  gap: 16px;
+  margin-bottom: 16px;
+`;
+
+const ImageUploadBox = styled.div`
+  border: 2px dashed #d0d3d9;
+  width: 81px;
+  height: 81px;
+  border-radius: 8px;
+`;
+
+const UploadTextWrapper = styled.div`
+  text-align: center;
+  line-height: 1.5;
+  color: #6b7280;
+`;
+
+const UploadText = styled(Typography)`
+  font-size: 14px;
+  font-weight: 500;
+  color: #858d9d;
+`;
+
+const BrowseLink = styled(Typography)`
+  font-size: 14px;
+  font-weight: 500;
+  color: #448df2;
+  cursor: pointer;
+`;
+
+const InputLabel = styled(Typography)`
+  font-size: 16px;
+  font-weight: 500;
+  color: #48505e;
+`;
+
+const StyledDialogActions = styled(DialogActions)`
+  padding: 8px 8px 16px 16px !important;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+`;

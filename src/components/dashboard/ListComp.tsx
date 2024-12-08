@@ -1,13 +1,16 @@
 import React from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import { Box, Chip, Typography } from "@mui/material";
+import styled from "styled-components";
+import { Chip, Typography } from "@mui/material";
 import TitleComp from "../TitleComp";
-const ListComp = () => {
-  const items = [
+
+interface ListItemData {
+  name: string;
+  quantity: string;
+  image: string;
+}
+
+const ListComp: React.FC = () => {
+  const items: ListItemData[] = [
     {
       name: "Tata Salt",
       quantity: "10 Packet",
@@ -16,7 +19,6 @@ const ListComp = () => {
     {
       name: "Lays",
       quantity: "15 Packet",
-
       image: "../../icons/lays.svg",
     },
     {
@@ -25,82 +27,86 @@ const ListComp = () => {
       image: "../../icons/lays.svg",
     },
   ];
+
   return (
-    <>
-      <Box
-        sx={{
-          backgroundColor: "#FFFFFF",
-          borderRadius: 2,
-          p: 1,
-          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <TitleComp
-          title="Low Quantity Stock"
-          textButtons={[
-            {
-              text: "See All",
-              onClick: () => console.log("See All clicked!"),
-            },
-          ]}
-        />
-
-        <List
-          sx={{
-            width: "100%",
-            backgroundColor: "#FFFFFF",
-            borderRadius: 2,
-          }}
-        >
-          {items.map((item, index) => (
-            <ListItem
-              key={index}
-              sx={{
-                display: "flex", // Flex düzeni
-                alignItems: "center", // Dikey ortalama
-                gap: 1, // Öğeler arasındaki boşluk
-                p: 0,
-              }}
-            >
-              {/* Avatar */}
-
-              <img src={item.image} style={{ width: "60px", height: "70px" }} />
-
-              {/* Text Content */}
-              <ListItemText
-                primary={item.name}
-                secondary={`Remaining Quantity: ${item.quantity}`}
-                sx={{
-                  flex: 1, // Tüm alanı kaplar
-                  "& .MuiListItemText-primary": {
-                    fontSize: "16px",
-                    fontWeight: "bold",
-                    color: "#383E49",
-                  },
-                  "& .MuiListItemText-secondary": {
-                    fontSize: "14px",
-                    color: "#6B7280",
-                  },
-                }}
-              />
-
-              {/* Chip */}
-              <Chip
-                label="Low"
-                size="small"
-                sx={{
-                  backgroundColor: "#FEECEB",
-                  color: "#AA3028",
-                  fontWeight: 500,
-                  mx: "2%",
-                }}
-              />
-            </ListItem>
-          ))}
-        </List>
-      </Box>
-    </>
+    <ListComp__Container>
+      <TitleComp
+        title="Low Quantity Stock"
+        textButtons={[
+          {
+            text: "See All",
+            onClick: () => console.log("See All clicked!"),
+          },
+        ]}
+      />
+      <ListComp__List>
+        {items.map((item, index) => (
+          <ListComp__ListItem key={index}>
+            <ListComp__Avatar src={item.image} alt={item.name} />
+            <ListComp__Text>
+              <Typography className="list-comp__text-primary">
+                {item.name}
+              </Typography>
+              <Typography className="list-comp__text-secondary">
+                Remaining Quantity: {item.quantity}
+              </Typography>
+            </ListComp__Text>
+            <ListComp__Chip label="Low" size="small" />
+          </ListComp__ListItem>
+        ))}
+      </ListComp__List>
+    </ListComp__Container>
   );
 };
 
 export default ListComp;
+
+/** Styled Components */
+const ListComp__Container = styled.div`
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const ListComp__List = styled.ul`
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 0;
+  margin: 0;
+`;
+
+const ListComp__ListItem = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+`;
+
+const ListComp__Avatar = styled.img`
+  width: 60px;
+  height: 70px;
+  border-radius: 4px; /* Optional: If you want rounded edges */
+`;
+
+const ListComp__Text = styled.div`
+  flex: 1;
+
+  .list-comp__text-primary {
+    font-size: 16px;
+    font-weight: bold;
+    color: #383e49;
+  }
+
+  .list-comp__text-secondary {
+    font-size: 14px;
+    color: #6b7280;
+  }
+`;
+
+const ListComp__Chip = styled(Chip)`
+  background-color: #feeceb !important;
+  color: #aa3028 !important;
+  font-weight: 500;
+`;

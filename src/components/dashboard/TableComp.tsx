@@ -1,13 +1,7 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import styled from "styled-components";
 import TitleComp from "../TitleComp";
+
 function createData(
   name: string,
   sold: number,
@@ -23,18 +17,11 @@ const rows = [
   createData("Parle G", 19, 17, 105),
 ];
 
-const TableComp = () => {
+const TableComp: React.FC = () => {
   return (
-    <Box
-      sx={{
-        backgroundColor: "#FFFFFF",
-        borderRadius: 2,
-        p: 1,
-        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-      }}
-    >
+    <TableComp__Container>
       <TitleComp
-        title="Low Quantity Stock"
+        title="Top Selling Stock"
         textButtons={[
           {
             text: "See All",
@@ -42,72 +29,66 @@ const TableComp = () => {
           },
         ]}
       />
-
-      <TableContainer>
-        <Table aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell sx={{ fontSize: "14px", color: "#5D6679" }}>
-                Name
-              </TableCell>
-              <TableCell
-                align="left"
-                sx={{ fontSize: "14px", color: "#5D6679" }}
-              >
-                Sold Quantity
-              </TableCell>
-              <TableCell
-                align="left"
-                sx={{ fontSize: "14px", color: "#5D6679" }}
-              >
-                Remaining Quantity
-              </TableCell>
-              <TableCell
-                align="left"
-                sx={{ fontSize: "14px", color: "#5D6679" }}
-              >
-                Price
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell
-                  component="th"
-                  scope="row"
-                  sx={{ fontSize: "14px", color: "#5D6679" }}
-                >
-                  {row.name}
-                </TableCell>
-                <TableCell
-                  align="left"
-                  sx={{ fontSize: "14px", color: "#5D6679" }}
-                >
-                  {row.sold}
-                </TableCell>
-                <TableCell
-                  align="left"
-                  sx={{ fontSize: "14px", color: "#5D6679" }}
-                >
-                  {row.remaining}
-                </TableCell>
-                <TableCell
-                  align="left"
-                  sx={{ fontSize: "14px", color: "#5D6679" }}
-                >
-                  ₹ {row.price}
-                </TableCell>
-              </TableRow>
+      <TableComp__TableContainer>
+        <table className="table-comp__table">
+          <thead>
+            <th className="table-comp__header-cell">Name</th>
+            <th className="table-comp__header-cell">Sold Quantity</th>
+            <th className="table-comp__header-cell">Remaining Quantity</th>
+            <th className="table-comp__header-cell">Price</th>
+          </thead>
+          <tbody>
+            {rows.map((row, index) => (
+              <tr key={index} className="table-comp__body-row">
+                <td className="table-comp__body-cell">{row.name}</td>
+                <td className="table-comp__body-cell">{row.sold}</td>
+                <td className="table-comp__body-cell">{row.remaining}</td>
+                <td className="table-comp__body-cell">₹ {row.price}</td>
+              </tr>
             ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Box>
+          </tbody>
+        </table>
+      </TableComp__TableContainer>
+    </TableComp__Container>
   );
 };
 
 export default TableComp;
+
+/** Styled Components */
+const TableComp__Container = styled.div`
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const TableComp__TableContainer = styled.div`
+  margin-top: 16px;
+
+  .table-comp__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .table-comp__header-cell {
+    font-size: 14px;
+    color: #5d6679;
+    text-align: left;
+    padding: 12px 8px;
+  }
+
+  .table-comp__body-row {
+    &:hover {
+      background-color: #f9f9f9;
+    }
+  }
+
+  .table-comp__body-cell {
+    font-size: 14px;
+    color: #5d6679;
+    text-align: left;
+    padding: 12px 8px;
+    border-top: 1px solid #e5e7eb;
+  }
+`;

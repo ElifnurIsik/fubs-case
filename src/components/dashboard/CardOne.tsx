@@ -1,5 +1,14 @@
 import React from "react";
-import { Box, Grid, Typography, Divider, List, ListItem } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  Divider,
+  List,
+  ListItem,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import TitleComp from "../TitleComp";
 
 // Statik veri yapısı için bir tip tanımlaması
@@ -15,6 +24,8 @@ interface CardOneProps {
 }
 
 const CardOne: React.FC<CardOneProps> = ({ array, titles }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <Box
       sx={{
@@ -72,7 +83,7 @@ const CardOne: React.FC<CardOneProps> = ({ array, titles }) => {
             </Grid>
 
             {/* Divider */}
-            {index < array.length - 1 && (
+            {index < array.length - 1 && isMobile && (
               <Divider
                 orientation="vertical"
                 flexItem

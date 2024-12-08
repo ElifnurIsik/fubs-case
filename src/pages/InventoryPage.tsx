@@ -1,9 +1,9 @@
-import { Box } from "@mui/material";
 import React from "react";
+import styled from "styled-components";
 import InventoryCard from "../components/inventory/InventoryCard";
 import InventoryTable from "../components/inventory/InventoryTable";
 
-const InventoryPage = () => {
+const InventoryPage: React.FC = () => {
   const inventoryData = [
     {
       title: "Categories",
@@ -36,17 +36,37 @@ const InventoryPage = () => {
       color: "#F36960",
     },
   ];
+
   return (
-    <>
-      <Box>
+    <InventoryPage__Container>
+      {/* Inventory Card */}
+      <InventoryPage__CardContainer>
         <InventoryCard data={inventoryData} title="Overall Inventory" />
-      </Box>
-      <Box sx={{ mt: "1.5%" }}>
-        {" "}
-        <InventoryTable />{" "}
-      </Box>
-    </>
+      </InventoryPage__CardContainer>
+
+      {/* Inventory Table */}
+      <InventoryPage__TableContainer>
+        <InventoryTable />
+      </InventoryPage__TableContainer>
+    </InventoryPage__Container>
   );
 };
 
 export default InventoryPage;
+
+/** Styled Components */
+const InventoryPage__Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5%;
+  margin-top: 16px;
+`;
+
+const InventoryPage__CardContainer = styled.div`
+  width: 100%;
+`;
+
+const InventoryPage__TableContainer = styled.div`
+  width: 100%;
+  margin-top: 1.5%;
+`;

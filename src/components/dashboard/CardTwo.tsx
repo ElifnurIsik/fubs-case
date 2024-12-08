@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Typography, Divider, List, ListItem } from "@mui/material";
+import styled from "styled-components";
 import TitleComp from "../TitleComp";
 
 // Statik veri yapısı için bir tip tanımlaması
@@ -9,90 +9,87 @@ interface StatItem {
   icon: string;
 }
 
-interface CardOneProps {
+interface CardTwoProps {
   data: StatItem[];
   titles: string;
 }
 
-const CardTwo: React.FC<CardOneProps> = ({ data, titles }) => {
+const CardTwo: React.FC<CardTwoProps> = ({ data, titles }) => {
   return (
-    <Box
-      sx={{
-        backgroundColor: "#FFFFFF",
-        borderRadius: 2,
-        p: 1,
-        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-      }}
-    >
+    <CardTwo__Container>
       <TitleComp title={titles} />
-
-      {/* İçerik */}
-      <Grid
-        container
-        spacing={1}
-        alignItems="center"
-        justifyContent="space-evenly"
-      >
+      <CardTwo__Content>
         {data.map((stat, index) => (
-          <React.Fragment key={index}>
-            <Grid item alignItems="center" sx={{ px: "1%" }}>
-              <List>
-                <ListItem
-                  sx={{
-                    alignItems: "center",
-                    justifyContent: "center",
-                    pb: "4px",
-                  }}
-                >
-                  {" "}
-                  <img
-                    src={stat.icon}
-                    alt={stat.label}
-                    style={{ width: 30, height: 30 }}
-                  />
-                </ListItem>
-                <ListItem sx={{ justifyContent: "center", p: 0 }}>
-                  {" "}
-                  <Typography
-                    sx={{
-                      fontSize: 16,
-                      fontWeight: 700,
-                      color: "#5D6679",
-                    }}
-                  >
-                    {stat.value}
-                  </Typography>
-                </ListItem>
-                <ListItem sx={{ p: 0 }}>
-                  {" "}
-                  <Typography
-                    sx={{
-                      fontSize: 14,
-                      color: "#444444",
-                    }}
-                  >
-                    {stat.label}
-                  </Typography>
-                </ListItem>
-              </List>
-            </Grid>
-
-            {/* Divider */}
-            {index < data.length - 1 && (
-              <Divider
-                orientation="vertical"
-                flexItem
-                sx={{
-                  height: "50%", // Divider'ın yüksekliğini %50 yapar
-                  backgroundColor: "#e5e7eb", // Divider'ın rengini ayarlar
-                }}
-              />
-            )}
-          </React.Fragment>
+          <CardTwo__Item key={index}>
+            <CardTwo__IconWrapper>
+              <CardTwo__Icon src={stat.icon} alt={stat.label} />
+            </CardTwo__IconWrapper>
+            <CardTwo__Value>{stat.value}</CardTwo__Value>
+            <CardTwo__Label>{stat.label}</CardTwo__Label>
+            {index < data.length - 1 && <CardTwo__Divider />}
+          </CardTwo__Item>
         ))}
-      </Grid>
-    </Box>
+      </CardTwo__Content>
+    </CardTwo__Container>
   );
 };
 
 export default CardTwo;
+
+/** Styled Components */
+
+const CardTwo__Container = styled.div`
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const CardTwo__Content = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap; /* Responsive için öğeleri sarar */
+`;
+
+const CardTwo__Item = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  margin: 8px; /* Öğeler arasında boşluk */
+`;
+
+const CardTwo__IconWrapper = styled.div`
+  margin-bottom: 4px;
+`;
+
+const CardTwo__Icon = styled.img`
+  width: 30px;
+  height: 30px;
+`;
+
+const CardTwo__Value = styled.span`
+  font-size: 16px;
+  font-weight: 700;
+  color: #5d6679;
+  margin-bottom: 4px;
+`;
+
+const CardTwo__Label = styled.span`
+  font-size: 14px;
+  color: #444444;
+`;
+
+const CardTwo__Divider = styled.div`
+  height: 50%;
+  width: 1px;
+  background-color: #e5e7eb;
+  position: absolute;
+  right: -10px;
+
+  @media (max-width: 600px) {
+    display: none; /* Mobilde görünmesin */
+  }
+`;
