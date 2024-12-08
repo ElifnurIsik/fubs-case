@@ -256,6 +256,7 @@ const Layout: React.FC = () => {
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           backgroundColor: "#F0F1F3",
+          minHeight: "100vh",
         }}
       >
         <Toolbar />
