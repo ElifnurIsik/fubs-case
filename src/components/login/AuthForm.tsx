@@ -39,7 +39,7 @@ const AuthForm: React.FC = () => {
 
   return (
     <FormContainer>
-      <Logo src="../../icons/logo.svg" alt="Logo" />
+      <Logo src="../../icons/Logo.svg" alt="Logo" />
       <HeaderText>{heading}</HeaderText>
       <SubText>{subText}</SubText>
       <Form onSubmit={handleSubmit}>

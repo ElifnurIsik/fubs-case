@@ -6,7 +6,7 @@ const InformationPages: React.FC = () => {
     <InformationPages__Container>
       <InformationPages__Card>
         <InformationPages__CardContent>
-          <InformationPages__Logo src="../icons/logo.svg" alt="Logo" />
+          <InformationPages__Logo src="../icons/logoB.svg" alt="Logo" />
 
           <InformationPages__Text>Yapım Aşamasında</InformationPages__Text>
         </InformationPages__CardContent>

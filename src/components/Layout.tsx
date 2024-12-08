@@ -83,7 +83,7 @@ const Layout: React.FC = () => {
       <List>
         <ListItem sx={{ pr: 3 }}>
           <ListItemIcon>
-            <img src="../icons/logo.svg" width="48px" height="48px" />
+            <img src="../icons/Logo.svg" width="48px" height="48px" />
           </ListItemIcon>
           <Typography
             sx={{
