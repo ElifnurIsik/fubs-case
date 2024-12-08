@@ -78,7 +78,7 @@ const Layout: React.FC = () => {
       <Box>
         <Toolbar>
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <img src="/icons/logo.svg" alt="Logo" width="40" />
+            <img src="/icons/Logo.svg" alt="Logo" width="40" />
             <Typography
               variant="h6"
               sx={{ fontWeight: "bold", color: "#1570EF" }}
@@ -162,7 +162,7 @@ const Layout: React.FC = () => {
               onClick={handleDrawerToggle}
               sx={{ mr: 2, display: { sm: "none" } }}
             >
-              <img src="/icons/logo.svg" alt="Menu Icon" />
+              <img src="/icons/Logo.svg" alt="Menu Icon" />
             </IconButton>
             <Paper
               component="form"
