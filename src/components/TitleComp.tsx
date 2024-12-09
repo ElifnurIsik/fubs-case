@@ -3,18 +3,18 @@ import styled from "styled-components";
 
 interface ButtonProps {
   text: string; // Buton metni
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void; // Tıklama işlevi
-  variant?: "text" | "outlined" | "contained"; // Opsiyonel buton tipi
-  icon?: string; // Opsiyonel ikon
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  variant?: "text" | "outlined" | "contained";
+  icon?: string;
 }
 
 interface TextButtonProps {
-  text: string; // Sadece metin içeren buton
-  onClick: () => void; // Tıklama işlevi
+  text: string;
+  onClick: () => void;
 }
 
 interface TitleCompProps {
-  title: string; // Başlık metni
+  title: string;
   buttons?: ButtonProps[]; // Standart butonlar
   textButtons?: TextButtonProps[]; // Sadece metin içeren butonlar
 }
@@ -26,7 +26,6 @@ const TitleComp: React.FC<TitleCompProps> = ({
 }) => {
   return (
     <TitleComp__Container>
-      {/* Başlık */}
       <TitleComp__Title>{title}</TitleComp__Title>
 
       {/* Eğer textButtons varsa */}

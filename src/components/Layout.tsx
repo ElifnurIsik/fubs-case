@@ -42,7 +42,7 @@ const Layout: React.FC = () => {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
-  // Split menu items into top and bottom sections
+
   const menuItems = menuData.filter(
     (item) => item.name !== "Settings" && item.name !== "Log out"
   );

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import TitleComp from "../TitleComp";
 
-// Statik veri yapısı için bir tip tanımlaması
 interface StatItem {
   value: string;
   label: string;

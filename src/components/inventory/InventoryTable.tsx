@@ -307,7 +307,7 @@ const InventoryTable = () => {
               <TableRow key={row.products}>
                 <TableCell
                   sx={{ cursor: "pointer" }}
-                  onClick={() => handleRowClick(row.products)} // Tıklama olayı
+                  onClick={() => handleRowClick(row.products)}
                 >
                   {row.products}
                 </TableCell>

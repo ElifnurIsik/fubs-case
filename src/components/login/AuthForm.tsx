@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const AuthForm: React.FC = () => {
-  const [type, setType] = useState<"login" | "signup">("signup"); // Default signup
+  const [type, setType] = useState<"login" | "signup">("signup");
   const isLogin = type === "login";
   const heading = isLogin ? "Log in to your account" : "Create an account";
   const subText = isLogin
@@ -28,12 +28,10 @@ const AuthForm: React.FC = () => {
       return;
     }
 
-    // Local Storage'a kaydet
     localStorage.setItem("name", name);
     localStorage.setItem("userEmail", email);
     localStorage.setItem("userPassword", password);
 
-    // Dashboard sayfasına yönlendir
     navigate("/dashboard");
   };
 

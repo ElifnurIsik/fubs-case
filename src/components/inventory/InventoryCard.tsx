@@ -17,7 +17,7 @@ interface InventoryCardItem {
   price?: string | number;
   description: string;
   type?: string;
-  color?: string; // Renk dinamik olabilmesi için opsiyonel
+  color?: string;
 }
 
 interface InventoryCardProps {
@@ -49,7 +49,7 @@ const InventoryCard: React.FC<InventoryCardProps> = ({ data, title }) => {
               <Box
                 sx={{
                   textAlign: "start",
-                  color: item.color || "#383E49", // Dinamik renk
+                  color: item.color || "#383E49",
                 }}
               >
                 <Typography

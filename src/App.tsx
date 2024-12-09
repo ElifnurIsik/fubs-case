@@ -4,7 +4,7 @@ import Layout from "./components/Layout";
 import DashboardPage from "./pages/DashboardPage";
 import AuthPage from "./pages/AuthPage";
 import InformationPages from "./pages/InformationPages";
-import ProtectedRoute from "./components/ProtectedRoute"; // ProtectedRoute'u içe aktar
+import ProtectedRoute from "./components/ProtectedRoute";
 import InventoryPage from "./pages/InventoryPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 
@@ -13,7 +13,6 @@ const App: React.FC = () => {
     <Routes>
       <Route path="/" element={<AuthPage />} />
 
-      {/* SideBar ile gösterilecek ve koruma altındaki sayfalar */}
       <Route
         element={
           <ProtectedRoute>

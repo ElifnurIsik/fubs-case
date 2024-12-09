@@ -27,7 +27,6 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ open, onClose }) => {
       </StyledDialogTitle>
 
       <StyledDialogContent>
-        {/* Image Upload Section */}
         <ImageUploadWrapper>
           <ImageUploadBox />
           <UploadTextWrapper>

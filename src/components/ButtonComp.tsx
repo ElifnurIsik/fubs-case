@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 interface ButtonCompProps {
-  onButtonClick: () => void; // Click handler function
-  buttonText: string; // Button text
-  variant?: "text" | "outlined" | "contained"; // Optional variant
-  icon?: string; // Optional icon
+  onButtonClick: () => void;
+  buttonText: string;
+  variant?: "text" | "outlined" | "contained";
+  icon?: string;
 }
 
 const ButtonComp: React.FC<ButtonCompProps> = ({

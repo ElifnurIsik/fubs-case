@@ -8,15 +8,15 @@ import { useMediaQuery, useTheme } from "@mui/material";
 // Block: page-container
 const PageContainer = styled(Grid)`
   width: 100%;
-  height: 100vh; /* Tüm ekran yüksekliği */
+  height: 100vh;
   padding: 16px;
 `;
 
 // Styled Grid Item
 const LoginSection = styled(Grid).attrs(() => ({
   item: true,
-  xs: 12, // Mobil ekranlarda tam genişlik
-  sm: 6, // Tablet ekranlarda %50 genişlik
+  xs: 12,
+  sm: 6,
 }))`
   display: flex;
   flex-direction: column;
