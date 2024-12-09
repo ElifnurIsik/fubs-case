@@ -101,7 +101,7 @@ const DashboardPage = () => {
           </Grid>
         </Grid>
       </Box>
-      {/* <Box sx={{ mt: "1.5%" }}>
+      <Box sx={{ mt: "1.5%" }}>
         <Grid container spacing={2} sx={{ height: "100%", width: "100%" }}>
           <Grid item sm={8} xs={12}>
             <ChartSales />
@@ -110,7 +110,7 @@ const DashboardPage = () => {
             <ChartOrder />
           </Grid>
         </Grid>
-      </Box> */}
+      </Box>
       <Box sx={{ mt: "1.5%" }}>
         <Grid
           container
